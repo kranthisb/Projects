@@ -1,0 +1,15 @@
+1) Get all available categories
+   http://localhost:8080/CatalogService/catalog
+	
+	["Freshwater Fishing/Waders/Waders","Hunting Clothing/Hunting Outerwear/Non-Insulated Outerwear","Shoes & Boots/Hunting Boots/Men'S Non-Insulated","Men","Luggage & BagsBagsDuffel BagsDuffel Bags","MNS FLEECE OUTERWEAR","Firearm Accessories>Patrol Rifle Parts>Receiver & Action Parts>Ejection Port Covers","Hunting Clothing/Hunting Outerwear/Waterfowl Clothing","Ammunition>Shotgun Ammo","Shoes & Boots/Casual Shoes/Men","Shoes & Boots/Casual Shoes/Men","Men's Clothing","Shoes & Boots/Hunting Boots/Men'S Snake Boots","Apparel-Jackets-Insulated Jackets","Shoes & Boots/Fishing & Water Shoes/Men","Shoes & Boots/Pac Boots/Men","Shoes & Boots/Fishing & Water Shoes/Men","Men'S Clothing/Men'S Clothing Accessories/Hats","Hunting Clothing/Hunting Accessories/Gloves, Handwarmers & Muffs","Shoes & Boots/Fishing & Water Shoes/Men","Shoes & Boots/Hunting Boots/Men'S Insulated"]
+	
+2) Get all brands for a given category (Say Clothing)
+	http://localhost:8080/CatalogService/catalog/Clothing 
+	["RedHead","Icebreaker"]
+	
+3) Get all products for a given category and brand
+	http://localhost:8080/CatalogService/catalog/Clothing/RedHead
+	[{"price":"21.77","image_url":"http://images.prosperentcdn.com/images/250x250/basspro.scene7.com/is/image/BassPro/1985591_12121105455741%3F%24Prod_Thumbnail%24","keyword":"RedHead Good Shot Gloves for Men"},
+	{"price":"29.99","image_url":"http://images.prosperentcdn.com/images/250x250/basspro.scene7.com/is/image/BassPro/1503482_10230420%3F%24Prod_Thumbnail%24","keyword":"RedHead Weathered Cotton Shapeable Outback Hat for Men"},
+	{"price":"34.99","image_url":"http://images.prosperentcdn.com/images/250x250/basspro.scene7.com/is/image/BassPro/1985440_12121105455522%3F%24Prod_Thumbnail%24","keyword":"RedHead Big Game WINDSTOPPER Gloves for Men"},
+	{"price":"69.99","image_url":"http://images.prosperentcdn.com/images/250x250/basspro.scene7.com/is/image/BassPro/1697534_10221207%3F%24Prod_Thumbnail%24","keyword":"RedHead Be The Tree Jacket Pant Suit for Men"}]		

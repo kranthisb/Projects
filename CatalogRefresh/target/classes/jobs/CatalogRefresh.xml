@@ -1,0 +1,40 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:batch="http://www.springframework.org/schema/batch" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/batch
+		http://www.springframework.org/schema/batch/spring-batch-2.2.xsd
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	">
+
+	<import resource="../config/context.xml" />
+	<import resource="../config/database.xml" />
+
+
+	<batch:job id="CatalogRefreshJob">
+		<batch:step id="fetch" next="persist">
+			<batch:tasklet ref="fetchTasklet" />
+		</batch:step>
+		<batch:step id="persist">
+			<batch:tasklet ref="persistTasklet" />
+		</batch:step>
+	</batch:job>
+
+	<bean id="fetchTasklet" class="com.catalog.refresh.tasklet.FetchData" />
+	<bean id="persistTasklet" class="com.catalog.refresh.tasklet.PersistData" />
+
+	<!-- <bean id="xmlItemWriter" class="org.springframework.batch.item.xml.StaxEventItemWriter">
+		<property name="resource" value="file:xml/outputs/report.xml" />
+		<property name="marshaller" ref="reportMarshaller" />
+		<property name="rootTagName" value="report" />
+	</bean> -->
+
+	<!-- <bean id="reportMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+		<property name="classesToBeBound">
+			<list>
+				<value>com.catalog.refresh.model.Report</value>
+			</list>
+		</property>
+	</bean>
+ -->
+
+</beans>

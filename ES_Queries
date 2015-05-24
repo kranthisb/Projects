@@ -1,0 +1,50 @@
+1) Get All Categories
+{
+"fields" : ["category"]
+}
+
+Ex: "category": "Men's Clothing",
+
+2) 
+{
+"fields" : ["brand"],
+"query": {
+    "bool": {
+      "must": [
+            {"match": { "category": "Men's Clothing" }}
+      ]
+}}}
+
+Ex: "brand": ["RedHead"] ,  "brand": ["Icebreaker"]
+
+3)  Get Product details For Given Category and Brand
+{
+"fields" : ["keyword", "price", "image_url"],
+"query": {
+    "bool": {
+      "must": [
+            {"match": { "category": "Men's Clothing" }},
+            {"match": { "brand": "RedHead" }}
+      ]
+}}}
+
+Ex: "brand": ["RedHead"] ,  "brand": ["Icebreaker"]
+
+4) Price Range for a given product..
+
+{
+"fields" : ["keyword", "price", "image_url"],
+"filter" : {
+"range" : {
+        "price" : {
+            "gte" : 20,
+            "lte" : 50
+        }
+}},
+"query": {
+    "bool": {
+      "must": [
+            {"match": { "category": "Men's Clothing" }},
+            {"match": { "brand": "RedHead" }}
+      ]
+}}}

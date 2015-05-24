@@ -1,0 +1,33 @@
+1. Create a DB
+	 use store
+	 
+2. Insert document into DB	 
+	db.catalogs.insert({
+		"productId": "5ce318f20fea3f8ae6a3bf0a43be94d2",
+		"searchCount":1
+	})
+	
+	db.catalogs.insert({
+		"productId": "ce041ce659fae352d1f24d4297690799",
+		"searchCount":2
+	})
+	
+	db.catalogs.insert({
+		"productId": "5aa0576267d2b5561fe591acfff822d9",
+		"searchCount":3
+	})
+	
+	db.catalogs.insert({
+		"productId": "bbda2ebd36ce3f21c94d6fc86ab747ab",
+		"searchCount":4
+	})
+	
+3. To Remove a document
+	db.catalogs.remove( { "productId" : "5ce318f20fea3f8ae6a3bf0a43be94d2" } )	
+	
+4. Server Stats (incl # of connections)
+	db.serverStatus()	
+
+5. Find all documents.
+	db.catalogs.find();
+	db.catalogs.find({ productId: '5aa0576267d2b5561fe591acfff822d9' });
