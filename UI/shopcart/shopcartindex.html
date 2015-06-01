@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Shopping Cart Template</title>
+	 	<link rel="stylesheet" type="text/css" href="cart.css"/>
+		<script type="text/javascript"  src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> 
+		<script type="text/javascript"  src="http://malsup.github.com/jquery.form.js"></script>
+		<script type="text/javascript" src="jquery.js"></script>
+	    <script type="text/javascript" src="cart.js"></script>    
+
+
+<body>
+<!-- 	<form> -->
+	
+	<div id="fblogin">
+		<div class="fb-login-button" scope="public_profile,email,user_friends" data-max-rows="1" data-size="large" 
+		data-show-faces="false" data-auto-logout-link="false" onlogin="getLoginStatus();"></div>
+	</div>	
+
+	<div class="wrapper">
+		<div class="leftdiv">
+			<div class="optionsdiv">
+				<div class="type"> 
+					<fieldset>
+						<legend>Type</legend>
+						<input type="checkbox" name="typeCB" id="check-1" value="Men"/>
+						<label for="check-1">Men</label></BR>
+		
+						<input type="checkbox" name="typeCB" id="check-2" value="Women" />
+
+						<label for="check-2">Women</label></BR>
+		
+						<input type="checkbox" name="typeCB" id="check-3" value="Kids" />
+						<label for="check-3">Kids</label></BR>					
+					</fieldset>
+				</div>
+				<div class="category"> 
+					<fieldset><legend>Category</legend>
+						<input type="checkbox" name="categoryCB" id="check-4" value="Clothing" />
+						<label for="check-4">Clothing</label></BR>
+		
+						<input type="checkbox" name="categoryCB" id="check-5" value="Boots" />
+
+						<label for="check-5">Boots</label></BR>
+		
+						<input type="checkbox" name="categoryCB" id="check-6" value="Hunting" />
+						<label for="check-6">Hunting</label></BR>
+					
+						<input type="checkbox" name="categoryCB" id="check-7" value="Fishing" />
+						<label for="check-7">Fishing</label></BR>
+					
+						<input type="checkbox" name="categoryCB" id="check-8" value="Jackets" />
+						<label for="check-8">Jackets</label></BR>
+					
+						<input type="checkbox" name="categoryCB" id="check-9" value="Bags" />
+						<label for="check-9">Bags</label></BR>
+											
+					</fieldset>			
+				</div>
+				<div class="brand"> 
+					<fieldset><legend>Brand</legend>
+						<input type="checkbox" name="brandCB" id="check-10"   value="RedHead"/>
+						<label for="check-10">RedHead</label></BR>
+		
+						<input type="checkbox" name="brandCB" id="check-11" value="Icebreaker" />
+						<label for="check-11">Icebreaker</label></br>
+		
+						<input type="checkbox" name="brandCB" id="check-12" value="Rugged Shark" />
+						<label for="check-12">Rugged Shark</label></BR>
+					
+						<input type="checkbox" name="brandCB" id="check-13" value="Under Armour" />
+						<label for="check-13">Under Armour</label></BR>
+					
+						<input type="checkbox" name="brandCB" id="check-14" value="Rocky" />
+						<label for="check-14">Rocky</label></BR>
+					
+						<input type="checkbox" name="brandCB" id="check-15" value="LaCrosse" />
+						<label for="check-15">LaCrosse</label></BR>
+											
+					</fieldset>					
+				</div>	
+				<input id="submitbutton" type="image" src="images/submit.jpeg" border="0" style="margin-left:36px" width="100px"  />		
+			</div>
+			<div class="friendsdiv">
+				<fieldset><legend><div id="findFriends">Find Friends</div></legend></fieldset>		
+			</div>
+		</div>
+		<div class="lineitemslist"></div>
+	</div>	
+<!-- 	</form>		 -->
+</body>
+</html>

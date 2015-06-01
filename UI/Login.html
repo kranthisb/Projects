@@ -1,0 +1,43 @@
+<html>
+<head>
+	<title>Shopping Cart</title>
+	<link rel="stylesheet" type="text/css" href="login.css"/>
+	<script type="text/javascript"  src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> 
+	<script type="text/javascript" src="shopcart/jquery.js"></script>
+	<script type="text/javascript" src="Login.js"></script>
+	<meta charset="UTF-8">
+
+</head>
+<body>
+
+
+<div id="loginform">
+	<div id="facebook" scope="public_profile,email,user_friends" data-max-rows="1" data-size="large" 
+	data-show-faces="false" data-auto-logout-link="false" onlogin="getLoginStatus();>
+	<i class="fa fa-facebook"></i><div id="connect">Connect with Facebook</div></div>
+
+	<div id="mainlogin">
+		<div id="or">or</div>
+		<h1>Log in</h1>
+		<form action="#">
+			<input type="text" placeholder="username or email" value="" required>
+			<input type="password" placeholder="password" value="" required>
+			<button type="submit"><i class="fa fa-arrow-right"></i></button>
+		</form>
+		<div id="note"><a href="#">Forgot your password?</a></div>
+	</div>
+</div>
+
+
+<!-- 
+<div class="fb-login-button" scope="public_profile,email,user_friends" data-max-rows="1" data-size="large" 
+data-show-faces="false" data-auto-logout-link="false" onlogin="getLoginStatus();"></div>
+ -->
+ 
+<div style="width:5500px" id="status">
+
+<div id="content" tyle="width:100%">
+
+</div>
+</body>
+</html>
