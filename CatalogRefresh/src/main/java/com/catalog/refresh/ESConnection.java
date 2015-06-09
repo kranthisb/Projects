@@ -26,7 +26,7 @@ public class ESConnection {
 	private Client connect(){
 		Settings settings = ImmutableSettings.settingsBuilder().put("cluster.name", "cornerstone").build();
 		
-		return new TransportClient(settings).addTransportAddress(new InetSocketTransportAddress("localhost",9300));
+		return new TransportClient(settings).addTransportAddress(new InetSocketTransportAddress("ec2-52-26-87-176.us-west-2.compute.amazonaws.com",9300));
 	}
 	
 	public Client client() {

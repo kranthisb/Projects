@@ -7,8 +7,9 @@ import org.elasticsearch.action.search.SearchType;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 
+import com.cs.datasource.ESDataSource;
 import com.cs.servlet.listener.AppContext;
-import com.cs.servlet.listener.AppProperties;
+import com.cs.util.Props;
 
 public class SearchDAO {
 	final static Logger log = Logger.getLogger(SearchDAO.class);
@@ -59,6 +60,24 @@ public class SearchDAO {
 		return response;
 	}
 	
+	public static SearchResponse getAllProducts(){
+		SearchResponse response = null;
+		try {
+			QueryBuilder qb = QueryBuilders.boolQuery().must(QueryBuilders.matchAllQuery());
+			
+			String[] includes = { "productId", "keyword", "price", "image_url" };			
+			response = searchCatalog().setQuery(qb).setFetchSource(includes, null).execute().actionGet();
+						
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.error(e.getMessage());
+		}
+		if (response == null) {
+			//TODO Handle Exceptions
+		}
+		return response;
+	}
+	
 	public static SearchResponse getProducts(String category, String brand){
 		SearchResponse response = null;
 		try {
@@ -80,9 +99,9 @@ public class SearchDAO {
 	}
 		
 	private static SearchRequestBuilder searchCatalog() {
-		return AppContext.esClient()
-				.prepareSearch(AppProperties.getInstance().getIndexName())
-				.setTypes(AppProperties.getInstance().getType())
+		return ESDataSource.getInstance().client()
+				.prepareSearch(Props.getInstance().getIndexName())
+				.setTypes(Props.getInstance().getType())
 				.setSearchType(SearchType.DFS_QUERY_AND_FETCH);
 	}
 

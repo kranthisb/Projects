@@ -4,66 +4,55 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 import org.apache.log4j.Logger;
-import org.bson.Document;
-import org.elasticsearch.client.Client;
-import org.elasticsearch.client.transport.TransportClient;
-import org.elasticsearch.common.settings.ImmutableSettings;
-import org.elasticsearch.common.settings.Settings;
-import org.elasticsearch.common.transport.InetSocketTransportAddress;
-import com.mongodb.MongoClient;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 
+import com.cs.datasource.DataSourceObserver;
+import com.cs.datasource.ESDataSource;
+import com.cs.datasource.MongoDBDataSource;
+import com.cs.util.Props;
+import com.cs.util.SystemMemoryInfo;
+import com.cs.util.Utils;
 
 public class AppContext implements ServletContextListener
 {
 	final static Logger log = Logger.getLogger(AppContext.class);
 
-	private static Client esClient;
-	private static MongoClient mongoClient;
-	private static MongoCollection<Document> catalogs;
+	private Props props = null;
+	private static AppContext appContext;
 	
-	private static MongoDatabase mongoDB;
+	public static AppContext getInstance(){
+		if(appContext == null){
+			appContext = new AppContext();
+		}
+		return appContext;
+	}
 
 	public void contextInitialized( ServletContextEvent sce ){
-		AppProperties props = AppProperties.getInstance();
+		props = Props.getInstance();
 		props.printAll();
 		
-		esClient = setupESConn();
-		mongoDB  = setupMongoDBConn();
-		catalogs = mongoDB.getCollection("catalogs");
+		DataSourceObserver dso = DataSourceObserver.getInstance();
+		dso.registerDataSource(ESDataSource.getInstance());
+		dso.registerDataSource(MongoDBDataSource.getInstance());
+		
+		connectToDataSource();
+		SystemMemoryInfo.init(props.getInt("executor.memCheck.interval", 30));	
+		log.debug("Context initialized successfully");
 	}
 
-	private  Client setupESConn(){
-		Settings settings = ImmutableSettings.settingsBuilder().put("cluster.name",
-				AppProperties.getInstance().getProperty("es.cluster.name")).build();
-
-		return new TransportClient( settings ).addTransportAddress(
-				new InetSocketTransportAddress(
-						AppProperties.getInstance().getProperty("es.host.name"),
-						Integer.parseInt( AppProperties.getInstance().getProperty("es.port")))) ;
-
-	}
-	
-	public static MongoCollection<Document> catalogs() {
-		return catalogs;
-	}
-	
-	public static Client esClient() {
-		return esClient;
-	}
-	
-	private MongoDatabase setupMongoDBConn(){
-		mongoClient = new MongoClient( "localhost" , 27017 );
-		mongoDB = mongoClient.getDatabase("store");
-		return mongoDB;
+	private void connectToDataSource(){
+		DataSourceObserver dso = DataSourceObserver.getInstance();
+		dso.connectToAllDataSources();
 	}
 
 	public void contextDestroyed( ServletContextEvent sce ){
-		log.info("Closing ES Connection");
-		esClient.close();
-		
-		log.info("Closing MongoDB Connection");
-		mongoClient.close();
+		log.info("Closing ES & MongoDB Connection");
+		DataSourceObserver dso = DataSourceObserver.getInstance();
+		dso.disConnectFromAllDataSources();		
+		try{
+			Utils.logTopMemoryConsumers();
+		}catch(Exception e){
+			log.error("Error while logging Top Memory consumers.");
+		}
+		log.info("Shutting down server.. Bbye");
 	}
 }

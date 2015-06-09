@@ -63,7 +63,28 @@ public class CSService {
 		}
 		return new ObjectMapper().writeValueAsString(results);
 	}
+	
+	public static String getAllProducts() throws JsonGenerationException, JsonMappingException, IOException{
+		List<Map<String, Object>> results = new ArrayList<Map<String, Object>>();
+		SearchResponse response = SearchDAO.getAllProducts();
+		Map<String, Object> products = null;
 
+		try {
+			for (SearchHit hit : response.getHits()) {
+				if (hit == null) {
+					//TODO handle
+				}
+				products = hit.getSource();
+
+				results.add(products);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.error(e.getMessage());
+		}
+		return new ObjectMapper().writeValueAsString(results);
+	}
+	
 	public static String getProducts(String category, String brand) throws JsonGenerationException, JsonMappingException, IOException{
 		List<Map<String, Object>> results = new ArrayList<Map<String, Object>>();
 		SearchResponse response = SearchDAO.getProducts(category, brand);
@@ -76,10 +97,11 @@ public class CSService {
 				}
 				products = hit.getSource();
 
-				Double searchCount = MongoDAO.getSearchCount(products.get("productId").toString());
-				if(searchCount!= null) {
-					products.put("searchCount", searchCount);
-				}
+				//Kranthi : uncoment it after adding MongoDB instance...
+//				Double searchCount = MongoDAO.getSearchCount(products.get("productId").toString());
+//				if(searchCount!= null) {
+//					products.put("searchCount", searchCount);
+//				}
 				results.add(products);
 			}
 		} catch (Exception e) {

@@ -14,6 +14,20 @@ import com.cs.service.CSService;
 public class CatalogController {
 	final static Logger logger = Logger.getLogger(CatalogController.class);
 	
+	@GET
+	@Path("all")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String getAllProducts() {
+		try {
+			return CSService.getAllProducts();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		return null;
+	}
+	
+	
 	/*
 	 * Get all available categories
 	 * curl -v http://localhost:8080/CatalogService/catalog
