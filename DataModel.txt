@@ -1,0 +1,46 @@
+User : 
+{
+    'type': 'user',
+    'user_id': (user id),
+    'first_name': (first name),
+    'last_name': (last name),
+    'friends': [(friend user_ids)]
+}
+
+Save For Later : 
+
+{
+    'type': 'saveforlater',
+    'user_id': (user id),
+    'products': [
+    	{
+    		catalog_id : (catalog id),
+    		saved_date :(saved_date)
+    	}
+    	.....
+    ]
+}
+
+Transactions :
+{
+	'type': 'saveforlater',
+    'user_id': (user id),
+    'transactions' : [
+    	{
+    		'transaction_type' : 'click',
+    		catalog_id : (catalog id),
+    		transaction_date :(transaction date)
+    	},
+    	{
+    		'transaction_type' : 'chatwithfriend',
+    		catalogs :[
+    			{
+    				catalog_id : (catalog id),
+    				friend_id : (friend id),
+    				transaction_date :(transaction date)
+	    		}
+    		]
+    		transaction_date :(transaction date)
+    	}
+    ]
+}
