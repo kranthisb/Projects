@@ -1,12 +1,10 @@
 package com.catalog.refresh.tasklet;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 
@@ -19,7 +17,6 @@ import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
 
 public class FetchData implements Tasklet{
-	@Override
 	public RepeatStatus execute(StepContribution contribution, 
 			ChunkContext chunkContext) throws Exception {
 

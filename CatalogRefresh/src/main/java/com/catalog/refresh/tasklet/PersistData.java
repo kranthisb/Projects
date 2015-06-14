@@ -17,9 +17,7 @@ import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 
 public class PersistData implements Tasklet{
-	@Override
-	public RepeatStatus execute(StepContribution contribution, 
-			ChunkContext chunkContext) throws Exception {
+	public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
 
 		System.out.println("Implementing Task2");
 		FileInputStream fis = new FileInputStream("/Users/kborra/Documents/KSB/projects/My_Projects/Prosperant");

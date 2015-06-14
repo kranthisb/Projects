@@ -108,7 +108,5 @@ public class Catalog {
 				+ currency + ", merchant=" + merchant + ", merchantId="
 				+ merchantId + ", brand=" + brand + ", upc=" + upc + ", isbn="
 				+ isbn + ", sales=" + sales + ", catalogId=" + catalogId + "]";
-	}
-	
-	
+	}	
 }
